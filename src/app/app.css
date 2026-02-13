@@ -1,0 +1,7 @@
+.main-body{
+  display: flex;
+  flex-direction: row !important;
+}
+.body-continer{
+    padding: 10px 20px;
+}

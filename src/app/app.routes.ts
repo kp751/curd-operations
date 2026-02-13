@@ -6,6 +6,9 @@ export const routes: Routes = [
   {
     path: '',
     component: Usertable
+  },  {
+    path: 'user-table',
+    component: Usertable
   },
   {
     path: 'userdetails',
