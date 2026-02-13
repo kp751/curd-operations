@@ -1,0 +1,109 @@
+<div class="container mt-4">
+
+  <!-- Header + Add Button -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h3 class="fw-bold text-primary text-uppercase m-0">
+      User Management
+    </h3>
+
+    <button class="btn btn-primary px-4"
+            [routerLink]="['/add']">
+      ➕ Add User
+    </button>
+  </div>
+
+  <!-- Search -->
+  <div class="d-flex justify-content-end mb-3">
+    <div style="width:350px;">
+      <div class="input-group">
+        <input type="text"
+               class="form-control"
+               placeholder="Search by name, email, mobile..."
+               [(ngModel)]="searchText">
+        <button class="btn btn-primary"
+                (click)="searchUsers()">
+          🔍
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Table -->
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <thead class="table-light">
+        <tr>
+          <th>S.No</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Mobile</th>
+          <th>Role</th>
+          <th>Status</th>
+          <th width="180">Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let user of paginatedUsers; let i = index">
+          <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.mobileNo }}</td>
+          <td>{{ user.role }}</td>
+          <td>{{ user.status }}</td>
+          <td>
+
+            <!-- ✅ FIXED VIEW BUTTON -->
+            <button class="btn btn-sm btn-outline-info me-2"
+              [routerLink]="['/view', (currentPage - 1) * itemsPerPage + i]">
+              👁
+            </button>
+
+            <!-- ✅ FIXED EDIT BUTTON -->
+            <button class="btn btn-sm btn-warning me-2"
+              [routerLink]="['/edit', (currentPage - 1) * itemsPerPage + i]">
+              ✏
+            </button>
+
+            <!-- Delete -->
+            <button class="btn btn-sm btn-danger"
+              (click)="deleteUser((currentPage - 1) * itemsPerPage + i)">
+              🗑
+            </button>
+
+          </td>
+        </tr>
+
+        <!-- No Data -->
+        <tr *ngIf="paginatedUsers.length === 0">
+          <td colspan="7" class="text-center text-muted">
+            No users found
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  <div class="d-flex justify-content-between align-items-center mt-3">
+    <button class="btn btn-secondary"
+            (click)="previousPage()"
+            [disabled]="currentPage === 1">
+      ⬅ Previous
+    </button>
+
+    <span>
+      Page {{ currentPage }} of {{ totalPages }}
+    </span>
+
+    <button class="btn btn-secondary"
+            (click)="nextPage()"
+            [disabled]="currentPage === totalPages">
+      Next ➡
+    </button>
+  </div>
+
+</div>

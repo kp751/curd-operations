@@ -1,1 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+    max-width: 1440px;
+    width: 100%;
+    margin: auto;
+}

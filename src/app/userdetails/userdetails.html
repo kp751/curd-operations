@@ -1,0 +1,64 @@
+<div class="container mt-4 user-panel">
+
+  <!-- Title -->
+  <div class="panel-title">
+    USER DETAILS
+  </div>
+
+  <hr />
+
+  <!-- Form Grid -->
+  <div class="row g-3">
+
+    <!-- Left Column -->
+    <div class="col-md-6">
+      <label class="form-label">Name</label>
+      <input type="text" class="form-control" [(ngModel)]="users.name" [disabled]="isViewMode">
+
+
+      <label class="form-label mt-3">Mobile No</label>
+      <input type="text" class="form-control" [(ngModel)]="users.mobileNo" [disabled]="isViewMode">
+
+
+      <label class="form-label mt-3">Status</label>
+      <select class="form-select" [(ngModel)]="users.status" [disabled]="isViewMode">
+        <option value="">Select Status</option>
+        <option>Active</option>
+        <option>Inactive</option>
+      </select>
+    </div>
+
+    <!-- Right Column -->
+    <div class="col-md-6">
+      <label class="form-label">Email</label>
+      <input type="email" class="form-control" [(ngModel)]="users.email" [disabled]="isViewMode">
+
+
+      <label class="form-label mt-3">Role</label>
+      <select class="form-select" [(ngModel)]="users.role" [disabled]="isViewMode">
+        <option value="">Select Role</option>
+        <option>Admin</option>
+        <option>User</option>
+        <option>Manager</option>
+      </select>
+    </div>
+
+  </div>
+  <br>
+  <!-- Buttons -->
+  <div class="d-flex justify-content-end gap-3 mt-4">
+    <button *ngIf="!isViewMode" class="btn btn-primary px-4" [disabled]="!isFormValid()" (click)="save()">
+      Save
+    </button>
+
+    <button *ngIf="!isViewMode" class="btn btn-outline-secondary px-4" (click)="cancel()">
+      Cancel
+    </button>
+
+    <button *ngIf="isViewMode" class="btn btn-outline-secondary px-4" routerLink="/">
+      Back
+    </button>
+
+  </div>
+
+</div>
